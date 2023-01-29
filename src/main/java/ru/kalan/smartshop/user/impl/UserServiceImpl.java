@@ -8,6 +8,7 @@ import ru.kalan.smartshop.user.UserMapper;
 import ru.kalan.smartshop.user.UserRepository;
 import ru.kalan.smartshop.user.UserService;
 import ru.kalan.smartshop.user.dto.UserDto;
+import ru.kalan.smartshop.user.dto.UserShortDto;
 import ru.kalan.smartshop.user.model.User;
 
 @Service
@@ -19,10 +20,10 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDto createUser(UserDto newDto) {
+    public UserShortDto createUser(UserDto newDto) {
         final User user = UserMapper.toUser(newDto);
         final User savedUser = userRepository.save(user);
         log.info("User {} saved", savedUser);
-        return UserMapper.toDto(savedUser);
+        return UserMapper.toShortDto(savedUser);
     }
 }

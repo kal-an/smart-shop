@@ -1,8 +1,9 @@
 package ru.kalan.smartshop.user;
 
 import ru.kalan.smartshop.user.dto.UserDto;
+import ru.kalan.smartshop.user.dto.UserShortDto;
 
 public interface UserService {
 
-    UserDto createUser(UserDto newDto);
+    UserShortDto createUser(UserDto newDto);
 }

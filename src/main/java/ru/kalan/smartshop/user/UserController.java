@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.kalan.smartshop.user.dto.UserDto;
+import ru.kalan.smartshop.user.dto.UserShortDto;
 import ru.kalan.smartshop.validation.OnCreate;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -24,7 +25,7 @@ public class UserController {
     @PostMapping(value = "/users", produces = APPLICATION_JSON_VALUE)
     @Operation(summary = "Регистрация пользователя",
             description = "Пользволяет зарегистрировать пользователя")
-    public UserDto createUser(
+    public UserShortDto createUser(
             @Validated(OnCreate.class) @RequestBody UserDto newDto) {
         log.info("Add new user {}", newDto);
         return userService.createUser(newDto);

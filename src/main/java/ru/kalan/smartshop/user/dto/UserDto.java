@@ -18,8 +18,6 @@ public class UserDto {
 
     @Null(groups = OnCreate.class, message = "ID should be empty")
     @NotNull(groups = OnUpdate.class, message = "ID should not be empty")
-    @Schema(description = "Идентификатор", example = "1234",
-            accessMode = Schema.AccessMode.READ_ONLY)
     private Integer id;
 
     @NotBlank(message = "Name should not be empty")
