@@ -8,4 +8,5 @@
 + [Docker Compose](https://www.docker.com)
 + [Apache Maven](https://maven.apache.org)
 + [Project Lombok](https://projectlombok.org)
++ [Swagger](https://swagger.io/tools/swagger-editor/)
 + [IntelliJ IDEA](https://www.jetbrains.com/ru-ru/idea/)
