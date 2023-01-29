@@ -23,6 +23,12 @@ public class User {
     private String name;
 
     @Column(nullable = false)
+    private String login;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
     private String email;
 
 }
