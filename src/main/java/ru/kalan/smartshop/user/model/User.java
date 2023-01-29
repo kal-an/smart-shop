@@ -1,7 +1,8 @@
 package ru.kalan.smartshop.user.model;
 
-import jakarta.persistence.*;
 import lombok.*;
+
+import javax.persistence.*;
 
 @Setter
 @Getter
