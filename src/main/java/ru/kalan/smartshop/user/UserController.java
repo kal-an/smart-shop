@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.kalan.smartshop.user.dto.UserDto;
 import ru.kalan.smartshop.validation.OnCreate;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @RestController
 @Slf4j
 @RequestMapping(path = "/users")
@@ -19,7 +21,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/users")
+    @PostMapping(value = "/users", produces = APPLICATION_JSON_VALUE)
     @Operation(summary = "Регистрация пользователя",
             description = "Пользволяет зарегистрировать пользователя")
     public UserDto createUser(
