@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import ru.kalan.smartshop.order.model.Status;
 import ru.kalan.smartshop.product.dto.ProductDto;
-import ru.kalan.smartshop.product.model.Product;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ import java.util.List;
 public class OrderDto {
 
     @Schema(description = "Идентификатор")
-    private Integer id;
+    private Long id;
 
     @Schema(description = "Список продуктов")
     private List<ProductDto> products;
