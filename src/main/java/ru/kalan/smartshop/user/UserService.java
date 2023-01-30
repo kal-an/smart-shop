@@ -6,4 +6,6 @@ import ru.kalan.smartshop.user.dto.UserShortDto;
 public interface UserService {
 
     UserShortDto createUser(UserDto newDto);
+
+    UserShortDto getById(Long userId);
 }
