@@ -26,6 +26,9 @@ public class OrderDto {
     @Schema(description = "Номер карты")
     private String cartNumber;
 
+    @Schema(description = "ID пользователя")
+    private Long userId;
+
     @Schema(description = "Статус")
     private Status status;
 }
