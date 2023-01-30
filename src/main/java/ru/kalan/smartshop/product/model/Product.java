@@ -24,7 +24,7 @@ public class Product {
     @Column(nullable = false)
     private String title;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "products")
     private Set<Category> categories;
 
     @Column(nullable = false)
