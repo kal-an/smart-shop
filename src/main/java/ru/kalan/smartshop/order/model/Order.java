@@ -2,6 +2,7 @@ package ru.kalan.smartshop.order.model;
 
 import lombok.*;
 import ru.kalan.smartshop.product.model.Product;
+import ru.kalan.smartshop.user.model.User;
 
 import javax.persistence.*;
 import java.util.List;
@@ -26,6 +27,10 @@ public class Order {
 
     @Column
     private String cartNumber;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
