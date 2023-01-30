@@ -2,6 +2,8 @@ package ru.kalan.smartshop.product.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.kalan.smartshop.exception.NotFoundEntityException;
 import ru.kalan.smartshop.product.ProductMapper;
@@ -20,8 +22,10 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Override
-    public List<ProductDto> searchProduct(String text) {
-        return ProductMapper.toDtoList(productRepository.findByTitle(text));
+    public List<ProductDto> searchProduct(String text, Integer from, Integer size) {
+        int page = from / size;
+        Pageable pageable = PageRequest.of(page, size);
+        return ProductMapper.toDtoList(productRepository.findByTitle(text, pageable));
     }
 
     @Override
