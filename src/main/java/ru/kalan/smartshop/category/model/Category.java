@@ -1,8 +1,10 @@
 package ru.kalan.smartshop.category.model;
 
 import lombok.*;
+import ru.kalan.smartshop.product.model.Product;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -21,5 +23,13 @@ public class Category {
 
     @Column(nullable = false, unique = true)
     private String name;
+
+    @ManyToMany
+    @JoinTable(
+            name = "product_categories",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private Set<Product> products;
 
 }
