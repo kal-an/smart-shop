@@ -36,4 +36,9 @@ public class ProductServiceImpl implements ProductService {
         log.info("Get product {}", productId);
         return ProductMapper.toDto(inDb);
     }
+
+    @Override
+    public List<ProductDto> getProductByIds(List<Long> productIds) {
+        return ProductMapper.toDtoList(productRepository.findAllById(productIds));
+    }
 }
