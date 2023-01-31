@@ -22,7 +22,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping(value = "/users", produces = APPLICATION_JSON_VALUE)
+    @PostMapping(produces = APPLICATION_JSON_VALUE)
     @Operation(summary = "Регистрация пользователя",
             description = "Пользволяет зарегистрировать пользователя")
     public UserShortDto createUser(
