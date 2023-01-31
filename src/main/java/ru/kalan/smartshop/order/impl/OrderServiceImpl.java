@@ -33,8 +33,8 @@ public class OrderServiceImpl implements OrderService {
     private final ProductService productService;
 
     @Override
-    public OrderDto createOrder(Long userId, NewOrderDto newDto) {
-        final UserShortDto user = userService.getById(userId);
+    public OrderDto createOrder(NewOrderDto newDto) {
+        final UserShortDto user = userService.getById(newDto.getUserId());
         final List<Product> products = productService.getProductByIds(newDto.getProducts())
                 .stream()
                 .map(ProductMapper::toProduct).toList();

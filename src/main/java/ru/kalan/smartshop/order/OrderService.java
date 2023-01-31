@@ -5,7 +5,7 @@ import ru.kalan.smartshop.order.dto.OrderDto;
 
 public interface OrderService {
 
-    OrderDto createOrder(Long userId, NewOrderDto newDto);
+    OrderDto createOrder(NewOrderDto newDto);
 
     void cancelOrder(Long orderId);
 
