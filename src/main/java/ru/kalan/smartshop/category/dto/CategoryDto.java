@@ -23,7 +23,7 @@ public class CategoryDto {
     @NotNull(groups = OnUpdate.class, message = "ID should not be empty")
     @Schema(description = "Идентификатор", example = "1234",
             accessMode = Schema.AccessMode.READ_ONLY)
-    private Integer id;
+    private Long id;
 
     @NotBlank(message = "Name should not be empty")
     @Size(max = 30, message = "Name should less 30 characters")
