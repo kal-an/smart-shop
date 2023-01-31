@@ -21,14 +21,14 @@ public class ProductController {
 
     @GetMapping(value = "{productId}")
     @Operation(summary = "Получение продукта",
-            description = "Пользволяет получить продукт по идентификатору")
+            description = "Позволяет получить продукт по идентификатору")
     public ProductDto getProductById(@PathVariable("productId") Long productId) {
         return productService.getById(productId);
     }
 
     @GetMapping("/search")
     @Operation(summary = "Поиска продукта",
-            description = "Пользволяет найти продукт по названию")
+            description = "Позволяет найти продукт по названию")
     public List<ProductDto> searchProducts(
             @RequestParam String text,
             @RequestParam(required = false, defaultValue = "0") @Min(0) Integer from,

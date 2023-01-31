@@ -24,7 +24,7 @@ public class UserController {
 
     @PostMapping(produces = APPLICATION_JSON_VALUE)
     @Operation(summary = "Регистрация пользователя",
-            description = "Пользволяет зарегистрировать пользователя")
+            description = "Позволяет зарегистрировать пользователя")
     public UserShortDto createUser(
             @Validated(OnCreate.class) @RequestBody UserDto newDto) {
         log.info("Add new user {}", newDto);
