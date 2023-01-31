@@ -11,7 +11,7 @@ public interface OrderService {
 
     void payForOrder(Long orderId);
 
-    OrderDto addProductToOrder(Long orderId, Long productId);
+    void addProductToOrder(Long orderId, Long productId);
 
     OrderDto getById(Long orderId);
 }

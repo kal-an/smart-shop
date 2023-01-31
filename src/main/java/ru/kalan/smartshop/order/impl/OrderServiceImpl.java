@@ -74,7 +74,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDto addProductToOrder(Long orderId, Long productId) {
+    public void addProductToOrder(Long orderId, Long productId) {
         final Order order = orderRepository.findById(orderId).orElseThrow(() ->
                 new NotFoundEntityException(String
                         .format("Order with id=%d was not found.", orderId)));
@@ -85,7 +85,6 @@ public class OrderServiceImpl implements OrderService {
             orderRepository.save(order);
             log.info("Added product {} to order {}", productId, orderId);
         }
-        return OrderMapper.toDto(order);
     }
 
     @Override

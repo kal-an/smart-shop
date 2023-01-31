@@ -48,8 +48,8 @@ public class OrderController {
     @GetMapping(value = "{orderId}")
     @Operation(summary = "Просмотреть заказ",
             description = "Позволяет посмотреть заказ")
-    public void getOrder(@PathVariable Long orderId) {
-        orderService.getById(orderId);
+    public OrderDto getOrder(@PathVariable Long orderId) {
+        return orderService.getById(orderId);
     }
 
     @PatchMapping("/{orderId}/products/{productId}")
