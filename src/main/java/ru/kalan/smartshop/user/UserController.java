@@ -30,4 +30,12 @@ public class UserController {
         log.info("Add new user {}", newDto);
         return userService.createUser(newDto);
     }
+
+    @GetMapping("{userId}")
+    @Operation(summary = "Профиль пользователя",
+            description = "Позволяет открыть профиль")
+    public UserShortDto getUser(@PathVariable Long userId) {
+        return userService.getById(userId);
+    }
+
 }
