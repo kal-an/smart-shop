@@ -1,8 +1,10 @@
 package ru.kalan.smartshop.user.model;
 
 import lombok.*;
+import ru.kalan.smartshop.order.model.Order;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -30,5 +32,8 @@ public class User {
 
     @Column(nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Order> orders;
 
 }
