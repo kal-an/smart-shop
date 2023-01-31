@@ -22,7 +22,7 @@ public class ProductDto {
     private String title;
 
     @Schema(description = "Список категорий")
-    private Set<CategoryDto> categories;
+    private Set<String> categories;
 
     @Schema(description = "Цена")
     private Double price;
