@@ -26,7 +26,7 @@ public class Category {
 
     @ManyToMany
     @JoinTable(
-            name = "product_categories",
+            name = "products_categories",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
