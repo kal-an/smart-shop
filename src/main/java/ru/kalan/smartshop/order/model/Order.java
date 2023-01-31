@@ -22,7 +22,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "order")
+    @ManyToMany(mappedBy = "orders")
     private List<Product> products;
 
     @Column
