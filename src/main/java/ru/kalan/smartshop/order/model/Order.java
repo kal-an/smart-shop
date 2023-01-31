@@ -9,7 +9,7 @@ import java.util.List;
 
 @Setter
 @Getter
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
