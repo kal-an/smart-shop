@@ -16,7 +16,7 @@ import java.util.Set;
 public class ProductDto {
 
     @Schema(description = "Идентификатор")
-    private Integer id;
+    private Long id;
 
     @Schema(description = "Название")
     private String title;
