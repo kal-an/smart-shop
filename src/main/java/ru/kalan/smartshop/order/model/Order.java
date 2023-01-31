@@ -35,4 +35,19 @@ public class Order {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Status status;
+
+    @Transient
+    public boolean isCreated() {
+        return status.equals(Status.NEW);
+    }
+
+    @Transient
+    public boolean isCanceled() {
+        return status.equals(Status.CANCELED);
+    }
+
+    @Transient
+    public boolean isComplete() {
+        return status.equals(Status.COMPLETE);
+    }
 }
