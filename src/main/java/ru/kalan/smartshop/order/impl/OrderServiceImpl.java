@@ -87,4 +87,12 @@ public class OrderServiceImpl implements OrderService {
         }
         return OrderMapper.toDto(order);
     }
+
+    @Override
+    public OrderDto getById(Long orderId) {
+        final Order order = orderRepository.findById(orderId).orElseThrow(() ->
+                new NotFoundEntityException(String
+                        .format("Order with id=%d was not found.", orderId)));
+        return OrderMapper.toDto(order);
+    }
 }
