@@ -1,6 +1,7 @@
 package ru.kalan.smartshop.order;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -49,5 +50,14 @@ public class OrderController {
             description = "Позволяет посмотреть заказ")
     public void getOrder(@PathVariable Long orderId) {
         orderService.getById(orderId);
+    }
+
+    @PatchMapping("/{orderId}/products/{productId}")
+    @Operation(summary = "Добавить продукт",
+            description = "Позволяет добавить продукт к заказу")
+    public void addProductToOrder(
+            @PathVariable @Parameter(description = "Идентификатор продукта")  Long productId,
+            @PathVariable @Parameter(description = "Идентификатор заказа")  Long orderId) {
+        orderService.addProductToOrder(orderId, productId);
     }
 }
