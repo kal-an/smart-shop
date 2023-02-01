@@ -3,9 +3,9 @@ package ru.kalan.smartshop.user.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import ru.kalan.smartshop.exception.NotFoundEntityException;
-import ru.kalan.smartshop.product.model.Product;
 import ru.kalan.smartshop.user.UserMapper;
 import ru.kalan.smartshop.user.UserRepository;
 import ru.kalan.smartshop.user.UserService;
@@ -17,11 +17,13 @@ import ru.kalan.smartshop.user.model.User;
 @Slf4j
 @Validated
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
     @Override
+    @Transactional
     public UserShortDto createUser(UserDto newDto) {
         final User user = UserMapper.toUser(newDto);
         final User savedUser = userRepository.save(user);

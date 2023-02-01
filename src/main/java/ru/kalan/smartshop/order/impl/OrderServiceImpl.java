@@ -3,6 +3,7 @@ package ru.kalan.smartshop.order.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import ru.kalan.smartshop.exception.NotFoundEntityException;
 import ru.kalan.smartshop.order.OrderMapper;
@@ -24,6 +25,7 @@ import java.util.List;
 @Slf4j
 @Validated
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
@@ -31,6 +33,7 @@ public class OrderServiceImpl implements OrderService {
     private final ProductRepository productRepository;
 
     @Override
+    @Transactional
     public OrderDto createOrder(NewOrderDto newDto) {
         final UserShortDto user = userService.getById(newDto.getUserId());
         final List<Product> products = productRepository.findAllById(newDto.getProducts());
@@ -46,6 +49,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public void cancelOrder(Long orderId) {
         final Order order = orderRepository.findById(orderId).orElseThrow(() ->
                 new NotFoundEntityException(String
@@ -58,6 +62,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public void payForOrder(Long orderId) {
         final Order order = orderRepository.findById(orderId).orElseThrow(() ->
                 new NotFoundEntityException(String
