@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  app:
+    build: ./
+    image: kali3/smart-shop:0.1
+    container_name: app
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/shop
+      - SPRING_DATASOURCE_USERNAME=shop
+      - SPRING_DATASOURCE_PASSWORD=shop
+
+  db:
+    image: postgres:14-alpine
+    volumes:
+      - /var/lib/postgresql/data/
+      - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/init.sql
+    container_name: db
+    ports:
+      - "6541:5432"
+    environment:
+      - POSTGRES_USER=shop
+      - POSTGRES_PASSWORD=shop
