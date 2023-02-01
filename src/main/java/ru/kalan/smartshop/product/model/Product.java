@@ -29,11 +29,7 @@ public class Product {
     @ManyToMany(mappedBy = "products")
     private Set<Category> categories;
 
-    @ManyToMany
-    @JoinTable(
-            name = "products_orders",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "order_id"))
+    @ManyToMany(mappedBy = "products")
     private List<Order> orders;
 
     @Column(nullable = false)
