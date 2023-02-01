@@ -28,6 +28,7 @@ public class ProductMapper {
         return Product.builder()
                 .id(dto.getId())
                 .title(dto.getTitle())
+                .price(dto.getPrice())
                 .build();
     }
 
