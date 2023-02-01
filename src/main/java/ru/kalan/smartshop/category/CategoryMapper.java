@@ -12,10 +12,10 @@ import java.util.List;
 public class CategoryMapper {
 
     public static CategoryDto toDto(Category category) {
-        final CategoryDto userDto = new CategoryDto();
-        userDto.setId(category.getId());
-        userDto.setName(category.getName());
-        return userDto;
+        final CategoryDto categoryDto = new CategoryDto();
+        categoryDto.setId(category.getId());
+        categoryDto.setName(category.getName());
+        return categoryDto;
     }
 
     public static Category toCategory(CategoryDto dto) {
