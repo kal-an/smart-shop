@@ -12,9 +12,7 @@ import ru.kalan.smartshop.order.dto.NewOrderDto;
 import ru.kalan.smartshop.order.dto.OrderDto;
 import ru.kalan.smartshop.order.model.Order;
 import ru.kalan.smartshop.order.model.Status;
-import ru.kalan.smartshop.product.ProductMapper;
-import ru.kalan.smartshop.product.ProductService;
-import ru.kalan.smartshop.product.dto.ProductDto;
+import ru.kalan.smartshop.product.ProductRepository;
 import ru.kalan.smartshop.product.model.Product;
 import ru.kalan.smartshop.user.UserMapper;
 import ru.kalan.smartshop.user.UserService;
@@ -30,14 +28,12 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final UserService userService;
-    private final ProductService productService;
+    private final ProductRepository productRepository;
 
     @Override
     public OrderDto createOrder(NewOrderDto newDto) {
         final UserShortDto user = userService.getById(newDto.getUserId());
-        final List<Product> products = productService.getProductByIds(newDto.getProducts())
-                .stream()
-                .map(ProductMapper::toProduct).toList();
+        final List<Product> products = productRepository.findAllById(newDto.getProducts());
         final Order savedOrder = orderRepository.save(
                 Order.builder()
                         .cartNumber(newDto.getCartNumber())
@@ -45,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
                         .products(products)
                         .user(UserMapper.toUser(user))
                         .build());
-        log.info("Order {} created", savedOrder);
+        log.info("Order {} created", savedOrder.getId());
         return OrderMapper.toDto(savedOrder);
     }
 
@@ -78,10 +74,12 @@ public class OrderServiceImpl implements OrderService {
         final Order order = orderRepository.findById(orderId).orElseThrow(() ->
                 new NotFoundEntityException(String
                         .format("Order with id=%d was not found.", orderId)));
-        final ProductDto productDto = productService.getById(productId);
         if (order.isCreated()) {
+            final Product product = productRepository.findById(orderId).orElseThrow(() ->
+                    new NotFoundEntityException(String
+                            .format("Product with id=%d was not found.", productId)));
             final List<Product> products = order.getProducts();
-            products.add(ProductMapper.toProduct(productDto));
+            products.add(product);
             orderRepository.save(order);
             log.info("Added product {} to order {}", productId, orderId);
         }
