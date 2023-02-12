@@ -13,6 +13,12 @@ public interface OrderService {
     OrderDto createOrder(NewOrderDto newDto);
 
     /**
+     * Создание заказа с отправкой в kafka
+     * @param newDto DTO для создания нового заказа
+     */
+    void creatTaskNewOrder(NewOrderDto newDto);
+
+    /**
      * Отмена заказ
      * @param orderId Идентификатор заказа
      */
