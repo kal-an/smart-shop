@@ -2,6 +2,7 @@ package ru.kalan.smartshop.order.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -31,6 +32,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final UserService userService;
     private final ProductRepository productRepository;
+    private final StreamBridge streamBridge;
 
     @Override
     @Transactional
@@ -49,6 +51,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void creatTaskNewOrder(NewOrderDto newDto) {
+        streamBridge.send("createOrderProducer-out-0", newDto);
+    }
+
+    @Override
     @Transactional
     public void cancelOrder(Long orderId) {
         final Order order = orderRepository.findById(orderId).orElseThrow(() ->
@@ -56,7 +63,6 @@ public class OrderServiceImpl implements OrderService {
                         .format("Order with id=%d was not found.", orderId)));
         if (!order.isCanceled()) {
             order.setStatus(Status.CANCELED);
-            orderRepository.save(order);
             log.info("Order {} canceled", orderId);
         }
     }
@@ -69,12 +75,12 @@ public class OrderServiceImpl implements OrderService {
                         .format("Order with id=%d was not found.", orderId)));
         if (order.isCreated()) {
             order.setStatus(Status.COMPLETE);
-            orderRepository.save(order);
             log.info("Order {} paid", orderId);
         }
     }
 
     @Override
+    @Transactional
     public void addProductToOrder(Long orderId, Long productId) {
         final Order order = orderRepository.findById(orderId).orElseThrow(() ->
                 new NotFoundEntityException(String
@@ -83,9 +89,7 @@ public class OrderServiceImpl implements OrderService {
             final Product product = productRepository.findById(orderId).orElseThrow(() ->
                     new NotFoundEntityException(String
                             .format("Product with id=%d was not found.", productId)));
-            final List<Product> products = order.getProducts();
-            products.add(product);
-            orderRepository.save(order);
+            order.getProducts().add(product);
             log.info("Added product {} to order {}", productId, orderId);
         }
     }

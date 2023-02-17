@@ -5,6 +5,8 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.kalan.smartshop.order.dto.NewOrderDto;
@@ -29,6 +31,15 @@ public class OrderController {
     public OrderDto createOrder(
             @Validated(OnCreate.class) @RequestBody NewOrderDto newDto) {
         return orderService.createOrder(newDto);
+    }
+
+    @PostMapping(value = "/kafka", produces = APPLICATION_JSON_VALUE)
+    @Operation(summary = "Создание заказа",
+            description = "Позволяет создать заказ", hidden = true)
+    public ResponseEntity<String> creatTaskNewOrder(
+            @Validated(OnCreate.class) @RequestBody NewOrderDto newDto) {
+        orderService.creatTaskNewOrder(newDto);
+        return new ResponseEntity<>("New order added.", HttpStatus.ACCEPTED);
     }
 
     @PatchMapping(value = "{orderId}/cancel")
