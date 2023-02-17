@@ -25,5 +25,5 @@ public class NewOrderDto {
     private Long userId;
 
     @Schema(description = "Статус")
-    private Status status;
+    private String status;
 }
