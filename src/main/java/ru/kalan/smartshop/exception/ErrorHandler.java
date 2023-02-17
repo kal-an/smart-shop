@@ -6,9 +6,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.kalan.smartshop.order.OrderController;
+import ru.kalan.smartshop.product.ProductController;
+import ru.kalan.smartshop.user.UserController;
 
 @Slf4j
-@RestControllerAdvice(assignableTypes = {OrderController.class})
+@RestControllerAdvice(assignableTypes = {
+        OrderController.class,
+        ProductController.class,
+        UserController.class})
 public class ErrorHandler {
 
     @ExceptionHandler({NotFoundEntityException.class})
