@@ -40,7 +40,7 @@ public class OrderController {
 
     @PatchMapping(value = "{orderId}/pay")
     @Operation(summary = "Оплата заказа",
-            description = "Позволяет отменить заказ")
+            description = "Позволяет оплатить заказ")
     public void payOrder(@PathVariable Long orderId) {
         orderService.payForOrder(orderId);
     }
