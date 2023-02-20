@@ -4,7 +4,7 @@
 
 ---
 ### Описание сервисов:
-REST приложение реализовано с использованием микросервисной архитектуры и базы данных PostgreSQL.
+REST приложение реализовано с использованием микросервисной архитектуры, брокера сообщений Apache Kafka и базы данных PostgreSQL.
 
 Реализована спецификация API, через [Swagger](https://swagger.io/tools/swagger-editor/).
 
@@ -17,6 +17,7 @@ REST приложение реализовано с использованием
 ### Стек технологий
 + [Java 17](https://www.java.com/)
 + [Spring Boot](https://spring.io/projects/spring-boot)
++ [Apache Kafka](https://kafka.apache.org)
 + [Hibernate](https://hibernate.org)
 + [PostgreSQL](https://www.postgresql.org)
 + [Docker Compose](https://www.docker.com)
