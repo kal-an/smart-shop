@@ -23,6 +23,7 @@ http://localhost:8080/orders/kafka
 ### Стек технологий
 + [Java 17](https://www.java.com/)
 + [Spring Boot](https://spring.io/projects/spring-boot)
++ [Spring Cloud](https://spring.io/projects/spring-cloud)
 + [Apache Kafka](https://kafka.apache.org)
 + [Hibernate](https://hibernate.org)
 + [PostgreSQL](https://www.postgresql.org)
