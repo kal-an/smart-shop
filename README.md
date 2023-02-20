@@ -9,6 +9,12 @@ REST приложение реализовано с использованием
 Реализована спецификация API, через [Swagger](https://swagger.io/tools/swagger-editor/).
 
 ![SwaggerApi](swagger/swagger-api.png)
+
+Для создания новых заказов с использованием брокера сообщений, можно отправить запрос на endpoint
+```http request
+http://localhost:8080/orders/kafka
+```
+
 ---
 ### Схема базы данных
 
