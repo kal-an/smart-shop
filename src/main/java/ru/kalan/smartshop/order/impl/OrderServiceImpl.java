@@ -52,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void creatTaskNewOrder(NewOrderDto newDto) {
-        streamBridge.send("createOrderProducer-out-0", newDto);
+        streamBridge.send("orderProducer-out-0", newDto);
     }
 
     @Override
